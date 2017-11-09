@@ -55,7 +55,7 @@ npm i html-screen-capture-js
 ### getAsHtmlElement()
 
 ```sh
-htmlScreenCapturer.getAsHtmlElement([htmldocument], [overrideOptions]);
+htmlScreenCapturer.getAsHtmlElement([htmlDocument], [overrideOptions]);
 ```
 #### Parameters
 
@@ -72,7 +72,7 @@ A new static lightweight html document element.
 ### getAsHtmlString()
 
 ```sh
-htmlScreenCapturer.getAsHtmlString([htmldocument], [overrideOptions]);
+htmlScreenCapturer.getAsHtmlString([htmlDocument], [overrideOptions]);
 ```
 #### Parameters
 
