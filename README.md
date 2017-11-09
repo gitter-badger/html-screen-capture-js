@@ -14,7 +14,7 @@ Uri Kalish, NOV 2017
 
 ## Technical Overview
 
-The code takes an html document as a parameter, and returns a new lightweight html document object that preserves the original appearance.
+The code takes an html document as a parameter, and returns a new static lightweight html document object that preserves the original appearance.
 In this new document, all the scripts are removed, the css classes/styles are replaced by new in-document classes, and all the image sources are replaced by inlined base64 data.
 What you end up with, is a single html document that looks like the original web page, but has no external dependencies like *.js, *.css, *.png, etc. so it can easily be displayed, saved, or transferred.
 Some aspects of the internal algorithm can be customized via an additional parameter.
