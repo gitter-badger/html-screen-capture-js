@@ -2,14 +2,23 @@
 
 ## Summary
 
-A small JavaScript code that gets an HTML document, and returns a new self-contained HTML DOM object that preserves the original appearance using only a single object.
-The original classes and styles are replaced with new classes, and images are replaced with base64 data.
+A small JavaScript library that takes a web page, and returns a new lightweight HTML DOM document that preserves the original appearance without any external file dependency.
 
 This library can be used to:
-1. Create a web page screen capture "image", and display the "snapshot" by using an iframe.
+
+1. Create a web page screen capture "image", and display the "snapshot" (e.g. by using an iframe).
 1. Send a complete web page content as a string to a remote server for further handling.
 1. Save a web page as a self-contained html document to a client local machine.
 1. Achieve world peace, and save humanity.
+
+A short technical explanation:
+
+The code takes an html document as a parameter, and returns a new lightweight html document object that preserves the original appearance.
+In this new document, all the script are removed, the css classes/styles are replaced by new in-document classes, and all the image sources are replaced by inlined base64 data.
+What you end up with, is a single html document that looks like the original web page, but has no external dependencies (e.g. *.js, *.css, *.png), so it can easily be displayed, saved, or transferred.
+Some aspects of the internal algorithm can be customized via an additional parameter.
+
+Uri Kalish, NOV 2017
 
 ## getAsHtmlElement()
 
