@@ -4,10 +4,6 @@ let webpack = require('webpack');
 let webpackConfig = require('./webpack.config.js');
 let webpackMinConfig = require('./webpack-min.config.js');
 
-gulp.task('gulp-prep', function(cb) {
-	cb();
-});
-
 gulp.task('gulp-pack', function(cb) {
 	webpack(
 	webpackConfig,
@@ -35,12 +31,13 @@ gulp.task('gulp-pack-min', function(cb) {
 });
 
 gulp.task('gulp-dist', function(cb) {
+	gulp.src('out/html-screen-capture.js').pipe(gulp.dest('dist', {prefix: 1}));
+	gulp.src('out/html-screen-capture.min.js').pipe(gulp.dest('dist', {prefix: 1}));
 	cb();
 });
 
 gulp.task('default', function(cb) {
 	runSequence(
-		'gulp-prep',
 		'gulp-pack',
 		'gulp-pack-min',
 		'gulp-dist',
