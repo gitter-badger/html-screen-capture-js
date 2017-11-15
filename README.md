@@ -25,13 +25,11 @@ You can get this library from these sources:
 
 - From [GitHub](https://github.com/urikalish/html-screen-capture-js)
 
-- From [npm](https://www.npmjs.com/package/html-screen-capture-js)
+- From [npm](https://www.npmjs.com/package/html-screen-capture-js) [![NPM version](http://img.shields.io/npm/v/html-screen-capture-js.svg)](https://www.npmjs.org/package/html-screen-capture-js.svg)
 
 ```sh
 npm i html-screen-capture-js
 ```
-
-[![NPM version](http://img.shields.io/npm/v/html-screen-capture-js.svg)](https://www.npmjs.org/package/html-screen-capture-js.svg)
 
 ## Artifacts
 
