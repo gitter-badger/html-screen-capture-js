@@ -31,7 +31,7 @@ class Capturer {
 			this._ctx.drawImage(imgElm, 0, 0);
 			imgDataUrl = this._canvas.toDataURL(this._options.imageFormatForDataUrl, this._options.imageQualityForDataUrl);
 		} catch(ex) {
-			console.error('Capturer.getImgDataUrl() - ' + ex.message);
+			console.log('Capturer.getImgDataUrl() - ' + ex.message);
 			this._shouldGetImgDataUrl = false;
 		}
 		return imgDataUrl;
