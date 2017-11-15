@@ -14,19 +14,27 @@ class Capturer {
 		this._isHead = true;
 		this._classMap = {};
 		this._classCount = 0;
+		this._shouldGetImgDataUrl = true;
 		this._canvas = null;
 		this._ctx = null;
 		this._doc = null;
 	}
 	_getImgDataUrl(imgElm) {
-		if (!this._canvas) {
-			this._canvas = this._doc.createElement('canvas');
-			this._ctx = this._canvas.getContext('2d');
+		let imgDataUrl = '';
+		try {
+			if (!this._canvas) {
+				this._canvas = this._doc.createElement('canvas');
+				this._ctx = this._canvas.getContext('2d');
+			}
+			this._canvas.width = imgElm.clientWidth;
+			this._canvas.height = imgElm.clientHeight;
+			this._ctx.drawImage(imgElm, 0, 0);
+			imgDataUrl = this._canvas.toDataURL(this._options.imageFormatForDataUrl, this._options.imageQualityForDataUrl);
+		} catch(ex) {
+			console.error('Capturer.getImgDataUrl() - ' + ex.message);
+			this._shouldGetImgDataUrl = false;
 		}
-		this._canvas.width = imgElm.clientWidth;
-		this._canvas.height = imgElm.clientHeight;
-		this._ctx.drawImage(imgElm, 0, 0);
-		return this._canvas.toDataURL(this._options.imageFormatForDataUrl, this._options.imageQualityForDataUrl);
+		return imgDataUrl;
 	}
 	_handleElmCss(domElm, newElm) {
 		let hasClasses = newElm.classList ? !!newElm.classList.value : !!newElm.className;
@@ -77,8 +85,11 @@ class Capturer {
 		newHtml.children[0].appendChild(style);
 	}
 	_recursiveWalk(domElm, newElm, handleCss) {
-		if (!this._isHead && domElm.tagName.toLowerCase() === 'img') {
-			newElm.setAttribute('src', this._getImgDataUrl(domElm));
+		if (this._shouldGetImgDataUrl && !this._isHead && domElm.tagName.toLowerCase() === 'img') {
+			let imgDataUrl = this._getImgDataUrl(domElm);
+			if (imgDataUrl) {
+				newElm.setAttribute('src', imgDataUrl);
+			}
 		}
 		if (handleCss) {
 			this._handleElmCss(domElm, newElm);
@@ -118,6 +129,7 @@ class Capturer {
 		this._isHead = true;
 		this._classMap = {};
 		this._classCount = 0;
+		this._shouldGetImgDataUrl = true;
 		this._canvas = null;
 		this._ctx = null;
 	}
@@ -130,8 +142,6 @@ class Capturer {
 		return newHtml;
 	}
 	getAsHtmlElement(htmlDocument, overrideOptions) {
-		console.log('getAsHtmlElement() start');
-		let startTime = (new Date()).getTime();
 		this._doc = htmlDocument || document;
 		if (overrideOptions) {
 			for (let def in overrideOptions) {
@@ -140,29 +150,44 @@ class Capturer {
 				}
 			}
 		}
-		let newHtml = this._getNewHtml();
-		let endTime = (new Date()).getTime();
-		console.log('getAsHtmlElement() end - ' + endTime - startTime + 'ms');
-		return newHtml;
+		return this._getNewHtml();
 	}
 }
 
 class HtmlScreenCapturer {
 	constructor() {
 		this._capturer = new Capturer();
+		this._functionStartTime = null;
+	}
+	_onFunctionStart(functionName) {
+		this._functionStartTime = (new Date()).getTime();
+		console.log(`HtmlScreenCapturer.${functionName}() - start`);
+	}
+	_onFunctionEnd(functionName) {
+		let endTime = (new Date()).getTime();
+		console.log(`HtmlScreenCapturer.${functionName}() - end - ${endTime - this._functionStartTime}ms`);
+	}
+	static _onFunctionException(functionName, ex) {
+		console.error(`HtmlScreenCapturer.${functionName}() - error - ${ex.message}`);
 	}
 	getAsHtmlElement(htmlDocument, overrideOptions) {
+		this._onFunctionStart('getAsHtmlElement');
 		try {
 			return this._capturer.getAsHtmlElement(htmlDocument, overrideOptions);
 		} catch(ex) {
-			console.error('HtmlScreenCapturer.getAsHtmlElement() - ' + ex.message);
+			HtmlScreenCapturer._onFunctionException('getAsHtmlElement', ex);
+		} finally {
+			this._onFunctionEnd('getAsHtmlElement');
 		}
 	}
 	getAsHtmlString(htmlDocument, overrideOptions) {
+		this._onFunctionStart('getAsHtmlString');
 		try {
 			return this._capturer.getAsHtmlElement(htmlDocument, overrideOptions).outerHTML;
 		} catch(ex) {
-			console.error('HtmlScreenCapturer.getAsHtmlString() - ' + ex.message);
+			HtmlScreenCapturer._onFunctionException('getAsHtmlString', ex);
+		} finally {
+			this._onFunctionEnd('getAsHtmlString');
 		}
 	}
 }
