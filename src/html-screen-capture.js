@@ -36,11 +36,18 @@ class Capturer {
 		}
 		return imgDataUrl;
 	}
+	_getClassCount(domElm) {
+		let classes = domElm.className instanceof SVGAnimatedString ? domElm.className.baseVal : domElm.className;
+		return classes ? classes.split(' ').length : 0;
+	}
+	_getClassName(domElm) {
+		let classes = domElm.className;
+		return classes instanceof SVGAnimatedString ? classes.baseVal : classes;
+	}
 	_handleElmCss(domElm, newElm) {
-		let hasClasses = newElm.classList ? !!newElm.classList.value : !!newElm.className;
-		if (hasClasses) {
+		if (this._getClassCount(newElm) > 0) {
 			if (this._options.attributeForSavingElmOrigClass) {
-				newElm.setAttribute(this._options.attributeForSavingElmOrigClass, newElm.className);
+				newElm.setAttribute(this._options.attributeForSavingElmOrigClass, this._getClassName(newElm));
 			}
 			newElm.removeAttribute('class');
 		}
