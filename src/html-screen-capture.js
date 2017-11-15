@@ -14,7 +14,7 @@ class Capturer {
 		this._isHead = true;
 		this._classMap = {};
 		this._classCount = 0;
-		this._shouldGetImgDataUrl = true;
+		this._shouldHandleImgDataUrl = true;
 		this._canvas = null;
 		this._ctx = null;
 		this._doc = null;
@@ -32,7 +32,7 @@ class Capturer {
 			imgDataUrl = this._canvas.toDataURL(this._options.imageFormatForDataUrl, this._options.imageQualityForDataUrl);
 		} catch(ex) {
 			console.log('Capturer.getImgDataUrl() - ' + ex.message);
-			this._shouldGetImgDataUrl = false;
+			this._shouldHandleImgDataUrl = false;
 		}
 		return imgDataUrl;
 	}
@@ -92,7 +92,7 @@ class Capturer {
 		newHtml.children[0].appendChild(style);
 	}
 	_recursiveWalk(domElm, newElm, handleCss) {
-		if (this._shouldGetImgDataUrl && !this._isHead && domElm.tagName.toLowerCase() === 'img') {
+		if (this._shouldHandleImgDataUrl && !this._isHead && domElm.tagName.toLowerCase() === 'img') {
 			let imgDataUrl = this._getImgDataUrl(domElm);
 			if (imgDataUrl) {
 				newElm.setAttribute('src', imgDataUrl);
@@ -136,7 +136,7 @@ class Capturer {
 		this._isHead = true;
 		this._classMap = {};
 		this._classCount = 0;
-		this._shouldGetImgDataUrl = true;
+		this._shouldHandleImgDataUrl = true;
 		this._canvas = null;
 		this._ctx = null;
 	}
