@@ -1,5 +1,7 @@
 # html-screen-capture-js
 
+[![NPM version](http://img.shields.io/npm/v/html-screen-capture-js.svg)](https://www.npmjs.org/package/html-screen-capture-js.svg)
+
 A small javascript library that takes a web page, and returns a new static lightweight HTML DOM document, excluding all external file dependencies, while still preserving the original appearance.
 
 This library can be used to:
@@ -25,7 +27,7 @@ You can get this library from these sources:
 
 - From [GitHub](https://github.com/urikalish/html-screen-capture-js)
 
-- From [npm](https://www.npmjs.com/package/html-screen-capture-js) [![NPM version](http://img.shields.io/npm/v/html-screen-capture-js.svg)](https://www.npmjs.org/package/html-screen-capture-js.svg)
+- From [npm](https://www.npmjs.com/package/html-screen-capture-js)
 
 ```sh
 npm i html-screen-capture-js
