@@ -54,6 +54,7 @@ npm install html-screen-capture-js
 {
     tagsToIgnoreFromDocHead: ['script', 'link', 'style'],
     tagsToIgnoreFromDocBody: ['script'],
+    classesOfElementsToIgnore: [],
     attributeKeyValuePairsOfElementsToIgnore: {},
     tagsToSkipCssHandlingForChildTree: ['svg'],
     attributeForSavingElmOrigClass: '_class',

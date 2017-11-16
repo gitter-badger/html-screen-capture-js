@@ -3,6 +3,7 @@ class Capturer {
 		this._options = {
 			tagsToIgnoreFromDocHead: ['script', 'link', 'style'],
 			tagsToIgnoreFromDocBody: ['script'],
+			classesOfElementsToIgnore: [],
 			attributeKeyValuePairsOfElementsToIgnore: {},
 			tagsToSkipCssHandlingForChildTree: ['svg'],
 			attributeForSavingElmOrigClass: '_class',
@@ -37,16 +38,25 @@ class Capturer {
 		}
 		return imgDataUrl;
 	}
-	_getClassCount(domElm) {
-		let classes = domElm.className instanceof SVGAnimatedString ? domElm.className.baseVal : domElm.className;
-		return classes ? classes.split(' ').length : 0;
+	_getClasses(domElm) {
+		let classes = [];
+		let className = domElm.className instanceof SVGAnimatedString ? domElm.className.baseVal : domElm.className;
+		if (className) {
+			let classNames = className.split(' ');
+			classNames.forEach(c => {
+				if (c) {
+					classes.push(c);
+				}
+			});
+		}
+		return classes;
 	}
 	_getClassName(domElm) {
 		let classes = domElm.className;
 		return classes instanceof SVGAnimatedString ? classes.baseVal : classes;
 	}
 	_handleElmCss(domElm, newElm) {
-		if (this._getClassCount(newElm) > 0) {
+		if (this._getClasses(newElm).length > 0) {
 			if (this._options.attributeForSavingElmOrigClass) {
 				newElm.setAttribute(this._options.attributeForSavingElmOrigClass, this._getClassName(newElm));
 			}
@@ -95,9 +105,10 @@ class Capturer {
 	_shouldIgnoreElm(domElm) {
 		let shouldRemoveElm = false;
 		if (this._isHead && this._options.tagsToIgnoreFromDocHead && this._options.tagsToIgnoreFromDocHead.indexOf(domElm.tagName.toLowerCase()) > -1 ||
-		!this._isHead && this._options.tagsToIgnoreFromDocBody && this._options.tagsToIgnoreFromDocBody.indexOf(domElm.tagName.toLowerCase()) > -1) {
+		   !this._isHead && this._options.tagsToIgnoreFromDocBody && this._options.tagsToIgnoreFromDocBody.indexOf(domElm.tagName.toLowerCase()) > -1) {
 			shouldRemoveElm = true;
-		} else if (this._options.attributeKeyValuePairsOfElementsToIgnore) {
+		}
+		if (!shouldRemoveElm && this._options.attributeKeyValuePairsOfElementsToIgnore) {
 			for (let attrKey in this._options.attributeKeyValuePairsOfElementsToIgnore) {
 				if (this._options.attributeKeyValuePairsOfElementsToIgnore.hasOwnProperty(attrKey)) {
 					for (let i = 0; i < domElm.attributes.length; i++) {
@@ -107,6 +118,14 @@ class Capturer {
 					}
 				}
 			}
+		}
+		if (!shouldRemoveElm && this._options.classesOfElementsToIgnore) {
+			let domElmClasses = this._getClasses(domElm);
+			domElmClasses.forEach(c => {
+				if (!shouldRemoveElm && this._options.classesOfElementsToIgnore.indexOf(c) > -1) {
+					shouldRemoveElm = true;
+				}
+			})
 		}
 		return shouldRemoveElm;
 	}
