@@ -92,7 +92,7 @@ class Capturer {
 		let cssText = this._options.rulesToAddToDocStyle || '';
 		for (let def in this._classMap) {
 			if (this._classMap.hasOwnProperty(def)) {
-				cssText += ('.' + this._classMap[def] + '{' + def + ';}');
+				cssText += ('.' + this._classMap[def] + '{' + def + '}');
 			}
 		}
 		if (style.styleSheet) {
