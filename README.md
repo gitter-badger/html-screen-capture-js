@@ -9,11 +9,11 @@ A small javascript library that takes a web page, and returns a new static light
 
 This library can be used to:
 
-1. Create a web page screen capture "image", and display the "snapshot" (e.g. by using an iframe).
-1. Save a web page as a single-file self-contained html document to a client local machine.
-1. Send a complete web page content as a simple string to a remote server.
+- Create a web page screen capture "image", and display the "snapshot" (e.g. by using an iframe).
+- Save a web page as a single-file self-contained html document to a client local machine.
+- Send a complete web page content as a simple string to a remote server.
 
-Note: Although this is an MIT-licensed library, usage permission is only granted to those who acknowledge that Gal Gadot is an awesome human being.
+Note: Although this is an MIT-licensed library, usage permission is only granted to those who acknowledge that Gal Gadot is a perfect human being.
 
 Uri Kalish, NOV 2017
 
@@ -38,14 +38,14 @@ npm install html-screen-capture-js
 
 ## Artifacts
 
-1. html-screen-capture.js
-1. html-screen-capture.min.js
+- html-screen-capture.js
+- html-screen-capture.min.js
 
 ## API
 
-1. [getAsElement()](#getAsElement)
-1. [getAsAsString()](#getAsAsString)
-1. [getAsEncodedUri()](#getAsEncodedUri)
+- [getAsElement()](#getAsElement)
+- [getAsAsString()](#getAsAsString)
+- [getAsEncodedUri()](#getAsEncodedUri)
 
 <a name="optionsDefaultValues"></a>
 ### Options - Default Values
