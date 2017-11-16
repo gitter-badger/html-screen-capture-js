@@ -3,6 +3,7 @@ class Capturer {
 		this._options = {
 			tagsToRemoveFromDocHead: ['script', 'link', 'style'],
 			tagsToRemoveFromDocBody: ['script'],
+			attributeKeyValuePairsOfElementsToRemove: {},
 			tagsToSkipCssHandlingForChildTree: ['svg'],
 			attributeForSavingElmOrigClass: '_class',
 			attributeForSavingElmOrigStyle: '_style',
@@ -91,6 +92,24 @@ class Capturer {
 		}
 		newHtml.children[0].appendChild(style);
 	}
+	_shouldRemoveElm(domElm) {
+		let shouldRemoveElm = false;
+		if (this._isHead && this._options.tagsToRemoveFromDocHead && this._options.tagsToRemoveFromDocHead.indexOf(domElm.tagName.toLowerCase()) > -1 ||
+		   !this._isHead && this._options.tagsToRemoveFromDocBody && this._options.tagsToRemoveFromDocBody.indexOf(domElm.tagName.toLowerCase()) > -1) {
+			shouldRemoveElm = true;
+		} else if (this._options.attributeKeyValuePairsOfElementsToRemove) {
+			for (let attrKey in this._options.attributeKeyValuePairsOfElementsToRemove) {
+				if (this._options.attributeKeyValuePairsOfElementsToRemove.hasOwnProperty(attrKey)) {
+					for (let i = 0; i < domElm.attributes.length; i++) {
+						if (domElm.attributes[i].specified && domElm.attributes[i].value === this._options.attributeKeyValuePairsOfElementsToRemove[attrKey]) {
+							shouldRemoveElm = true;
+						}
+					}
+				}
+			}
+		}
+		return shouldRemoveElm;
+	}
 	_recursiveWalk(domElm, newElm, handleCss) {
 		if (this._shouldHandleImgDataUrl && !this._isHead && domElm.tagName.toLowerCase() === 'img') {
 			let imgDataUrl = this._getImgDataUrl(domElm);
@@ -106,8 +125,7 @@ class Capturer {
 		}
 		if (domElm.children) {
 			for (let i = domElm.children.length - 1; i >= 0; i--) {
-				if (this._isHead && this._options.tagsToRemoveFromDocHead && this._options.tagsToRemoveFromDocHead.indexOf(domElm.children[i].tagName.toLowerCase()) > -1 ||
-				!this._isHead && this._options.tagsToRemoveFromDocBody && this._options.tagsToRemoveFromDocBody.indexOf(domElm.children[i].tagName.toLowerCase()) > -1) {
+				if (this._shouldRemoveElm(domElm.children[i])) {
 					newElm.removeChild(newElm.children[i]);
 				} else {
 					this._recursiveWalk(domElm.children[i], newElm.children[i], handleCss);

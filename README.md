@@ -46,6 +46,7 @@ npm i html-screen-capture-js
 {
   tagsToRemoveFromDocHead: ['script', 'link', 'style'],
   tagsToRemoveFromDocBody: ['script'],
+  attributeKeyValuePairsOfElementsToRemove: {},
   tagsToSkipCssHandlingForChildTree: ['svg'],
   attributeForSavingElmOrigClass: '_class',
   attributeForSavingElmOrigStyle: '_style',
