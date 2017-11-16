@@ -91,7 +91,7 @@ htmlScreenCapturer.getAsString([htmlDocument], [overrideOptions]);
 ```
 #### Parameters
 
-###### htmlDocument
+##### htmlDocument
  An optional object-type parameter, specifying the html document to capture. If not specified - window.document is used.
  
 ##### overrideOptions
@@ -109,7 +109,7 @@ htmlScreenCapturer.getAsEncodedUri([htmlDocument], [overrideOptions]);
 ```
 #### Parameters
 
-###### htmlDocument
+##### htmlDocument
  An optional object-type parameter, specifying the html document to capture. If not specified - window.document is used.
  
 ##### overrideOptions
