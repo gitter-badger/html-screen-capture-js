@@ -44,16 +44,16 @@ npm i html-screen-capture-js
 
 ```sh
 {
-  tagsToRemoveFromDocHead: ['script', 'link', 'style'],
-  tagsToRemoveFromDocBody: ['script'],
-  attributeKeyValuePairsOfElementsToRemove: {},
-  tagsToSkipCssHandlingForChildTree: ['svg'],
-  attributeForSavingElmOrigClass: '_class',
-  attributeForSavingElmOrigStyle: '_style',
-  prefixForNewGeneratedClasses: 'c',
-  imageFormatForDataUrl: 'image/png',
-  imageQualityForDataUrl: '0.92',
-  rulesToInjectToDocStyle: '*{font-family:"Arial Narrow" !important;}'
+    tagsToIgnoreFromDocHead: ['script', 'link', 'style'],
+    tagsToIgnoreFromDocBody: ['script'],
+    attributeKeyValuePairsOfElementsToIgnore: {},
+    tagsToSkipCssHandlingForChildTree: ['svg'],
+    attributeForSavingElmOrigClass: '_class',
+    attributeForSavingElmOrigStyle: '_style',
+    prefixForNewGeneratedClasses: 'c',
+    imageFormatForDataUrl: 'image/png',
+    imageQualityForDataUrl: '0.92',
+    rulesToInjectToDocStyle: '*{font-family:"Arial Narrow" !important;}'
 } 
 ```
 
