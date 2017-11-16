@@ -1,6 +1,6 @@
 {
   "name": "html-screen-capture-js",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "HTML Screen Capture JS",
   "keywords": [
     "html",
@@ -11,8 +11,8 @@
     "js",
     "javascript"
   ],
-  "author": "Uri Kalish",
   "license": "MIT",
+  "author": "Uri Kalish <uri.kalish@gmail.com>",
   "files": [
     "dist/html-screen-capture.js",
     "dist/html-screen-capture.min.js"
@@ -21,9 +21,8 @@
     "type": "git",
     "url": "https://github.com/urikalish/html-screen-capture-js"
   },
-  "engines": {
-    "node": "^4.4.2",
-    "npm": "^2.15.0"
+  "scripts": {
+    "build": "gulp"
   },
   "devDependencies": {
     "babel-core": "~6.24.1",
@@ -37,7 +36,8 @@
   },
   "dependencies": {
   },
-  "scripts": {
-    "build": "gulp"
+  "engines": {
+    "node": "^4.4.2",
+    "npm": "^2.15.0"
   }
 }
