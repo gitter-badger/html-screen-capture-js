@@ -44,8 +44,8 @@ npm i html-screen-capture-js
 1. [getAsAsString()](#getAsAsString)
 1. [getAsEncodedUri()](#getAsEncodedUri)
 
-<a name="defaultOptions"></a>
-### Default Options
+<a name="optionsDefaultValues"></a>
+### Options - Default Values
 
 ```sh
 {
@@ -74,7 +74,7 @@ htmlScreenCapturer.getAsElement([htmlDocument], [overrideOptions]);
 An optional object-type parameter, specifying the html document to capture. If not specified - window.document is used.
 
 ##### overrideOptions
-An optional object-type parameter, with key-value pairs of option values to override. If not specified - [default values](#defaultOptions) are used for all properties. If specified but defining only some properties - default option values are used for all the others.
+An optional object-type parameter, with key-value pairs of option values to override. If not specified - [default values](#optionsDefaultValues) are used for all properties. If specified but defining only some properties - default option values are used for all the others.
 
 #### Return Value
 
@@ -92,7 +92,7 @@ htmlScreenCapturer.getAsString([htmlDocument], [overrideOptions]);
  An optional object-type parameter, specifying the html document to capture. If not specified - window.document is used.
  
 ##### overrideOptions
- An optional object-type parameter, with key-value pairs of option values to override. If not specified - [default values](#defaultOptions) are used for all properties. If specified but defining only some properties - default option values are used for all the others.
+ An optional object-type parameter, with key-value pairs of option values to override. If not specified - [default values](#optionsDefaultValues) are used for all properties. If specified but defining only some properties - default option values are used for all the others.
 
 #### Return Value
 
@@ -110,7 +110,7 @@ htmlScreenCapturer.getAsEncodedUri([htmlDocument], [overrideOptions]);
  An optional object-type parameter, specifying the html document to capture. If not specified - window.document is used.
  
 ##### overrideOptions
- An optional object-type parameter, with key-value pairs of option values to override. If not specified - [default values](#defaultOptions) are used for all properties. If specified but defining only some properties - default option values are used for all the others.
+ An optional object-type parameter, with key-value pairs of option values to override. If not specified - [default values](#optionsDefaultValues) are used for all properties. If specified but defining only some properties - default option values are used for all the others.
 
 #### Return Value
 
