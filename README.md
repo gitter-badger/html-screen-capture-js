@@ -1,6 +1,8 @@
 # html-screen-capture-js
 
-[![NPM version](http://img.shields.io/npm/v/html-screen-capture-js.svg)](https://www.npmjs.org/package/html-screen-capture-js.svg)
+[![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg)](https://opensource.org/licenses/MIT)
+
+[![NPM version](http://img.shields.io/npm/v/html-screen-capture-js.svg)](https://www.npmjs.com/package/html-screen-capture-js)
 
 [![NPM](https://nodei.co/npm/html-screen-capture-js.png?compact=true)](https://www.npmjs.com/package/html-screen-capture-js)
 
