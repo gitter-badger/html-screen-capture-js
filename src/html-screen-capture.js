@@ -11,7 +11,7 @@ class Capturer {
 			prefixForNewGeneratedClasses: 'c',
 			imageFormatForDataUrl: 'image/png',
 			imageQualityForDataUrl: 0.92,
-			rulesToAddToDocStyle: '*{font-family:"Arial Narrow" !important;}'
+			rulesToAddToDocStyle: '*{font-family:"Arial Narrow" !important}'
 		};
 		this._isHead = true;
 		this._classMap = {};

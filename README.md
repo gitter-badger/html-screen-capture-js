@@ -184,4 +184,4 @@ htmlScreenCapturer.getAsElement(
 
 - Meaning: Css rules (as a single string) to add to the newly created html document.
 - Value type: String. 
-- Default value: '*{font-family:"Arial Narrow" !important;}'
+- Default value: '*{font-family:"Arial Narrow" !important}'
