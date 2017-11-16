@@ -95,7 +95,7 @@ class Capturer {
 	_shouldIgnoreElm(domElm) {
 		let shouldRemoveElm = false;
 		if (this._isHead && this._options.tagsToIgnoreFromDocHead && this._options.tagsToIgnoreFromDocHead.indexOf(domElm.tagName.toLowerCase()) > -1 ||
-		   !this._isHead && this._options.tagsToIgnoreFromDocBody && this._options.tagsToIgnoreFromDocBody.indexOf(domElm.tagName.toLowerCase()) > -1) {
+		!this._isHead && this._options.tagsToIgnoreFromDocBody && this._options.tagsToIgnoreFromDocBody.indexOf(domElm.tagName.toLowerCase()) > -1) {
 			shouldRemoveElm = true;
 		} else if (this._options.attributeKeyValuePairsOfElementsToIgnore) {
 			for (let attrKey in this._options.attributeKeyValuePairsOfElementsToIgnore) {
@@ -181,39 +181,40 @@ class Capturer {
 
 class HtmlScreenCapturer {
 	constructor() {
+		this._objectName = 'HtmlScreenCapturer';
 		this._capturer = new Capturer();
-		this._functionStartTime = null;
-	}
-	_onFunctionStart(functionName) {
 		this._functionStartTime = (new Date()).getTime();
-		console.log(`HtmlScreenCapturer.${functionName}() - start`);
 	}
-	_onFunctionEnd(functionName) {
-		let endTime = (new Date()).getTime();
-		console.log(`HtmlScreenCapturer.${functionName}() - end - ${endTime - this._functionStartTime}ms`);
-	}
-	static _onFunctionException(functionName, ex) {
-		console.error(`HtmlScreenCapturer.${functionName}() - error - ${ex.message}`);
-	}
-	getAsHtmlElement(htmlDocument, overrideOptions) {
-		this._onFunctionStart('getAsHtmlElement');
+	_runApiFunction(func, args, apiFuncName) {
+		this._functionStartTime = (new Date()).getTime();
+		console.log(`${this._objectName}.${apiFuncName}() - start`);
+		let retVal = null;
 		try {
-			return this._capturer.getAsHtmlElement(htmlDocument, overrideOptions);
+			retVal = func.call(this, args);
 		} catch(ex) {
-			HtmlScreenCapturer._onFunctionException('getAsHtmlElement', ex);
+			console.error(`${this._objectName}.${apiFuncName}() - error - ${ex.message}`);
 		} finally {
-			this._onFunctionEnd('getAsHtmlElement');
+			let endTime = (new Date()).getTime();
+			console.log(`${this._objectName}.${apiFuncName}() - end - ${endTime - this._functionStartTime}ms`);
 		}
+		return retVal;
 	}
-	getAsHtmlString(htmlDocument, overrideOptions) {
-		this._onFunctionStart('getAsHtmlString');
-		try {
-			return this._capturer.getAsHtmlElement(htmlDocument, overrideOptions).outerHTML;
-		} catch(ex) {
-			HtmlScreenCapturer._onFunctionException('getAsHtmlString', ex);
-		} finally {
-			this._onFunctionEnd('getAsHtmlString');
-		}
+	getAsElement(htmlDocument, overrideOptions) {
+		return this._runApiFunction(function(args) {
+			return this._capturer.getAsHtmlElement(...args);
+		}, [htmlDocument, overrideOptions], 'getAsElement');
+	}
+	getAsString(htmlDocument, overrideOptions) {
+		return this._runApiFunction(function(args) {
+			let htmlElement = this._capturer.getAsHtmlElement(...args);
+			return htmlElement ? htmlElement.outerHTML : '';
+		}, [htmlDocument, overrideOptions], 'getAsString');
+	}
+	getAsEncodedUri(htmlDocument, overrideOptions) {
+		return this._runApiFunction(function(args) {
+			let htmlElement = this._capturer.getAsHtmlElement(...args);
+			return htmlElement ? encodeURI(htmlElement.outerHTML) : '';
+		}, [htmlDocument, overrideOptions], 'getAsEncodedUri');
 	}
 }
 
