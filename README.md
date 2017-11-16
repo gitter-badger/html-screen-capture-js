@@ -140,7 +140,7 @@ htmlScreenCapturer.getAsElement(
 
 #### attrKeyValuePairsOfIgnoredElements
 
-- Meaning: Elements with these tag names will not be cloned to the newly created html document.
+- Meaning: Elements with these attribute name and value will not be cloned to the newly created html document.
 - Value type: Object where each property name is an html attribute key, and its value is an html attribute value. 
 - Default value: { } //an empty object
 
@@ -164,7 +164,7 @@ htmlScreenCapturer.getAsElement(
 
 #### prefixForNewGeneratedClasses
 
-- Meaning: The prefix to use for all newly created classes (the suffix is a number).
+- Meaning: The prefix to use for all newly created classes - the suffix is a number.
 - Value type: String.
 - Default value: 'c'
 
