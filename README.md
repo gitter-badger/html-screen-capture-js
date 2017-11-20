@@ -109,7 +109,7 @@ A URI-encoded string representation of a new static lightweight html document el
 <a name="howToOverrideDefaultOptions"></a>
 ### How To Override Default Options
 
-When calling any API function, you can change any default option value by defining a similar named property on the overrideOptions parameter.
+When calling any API function, you can change any default option value by defining a similarly named property on the overrideOptions parameter.
 
 ```sh
 htmlScreenCapturer.getAsElement(
