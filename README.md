@@ -33,10 +33,6 @@ You can get this library from these sources:
 
 - From [npm](https://www.npmjs.com/package/html-screen-capture-js)
 
-```sh
-npm install html-screen-capture-js
-```
-
 [![NPM](https://nodei.co/npm/html-screen-capture-js.png?compact=true)](https://www.npmjs.com/package/html-screen-capture-js)
 
 <a name="artifacts"></a>
