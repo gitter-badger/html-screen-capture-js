@@ -16,8 +16,6 @@ Uri Kalish, NOV 2017
 [![NPM version](https://img.shields.io/npm/v/html-screen-capture-js.svg)](https://www.npmjs.com/package/html-screen-capture-js)
 [![Github Release](https://img.shields.io/github/release/urikalish/html-screen-capture-js/all.svg)](https://github.com/urikalish/html-screen-capture-js/releases)
 
-[![NPM](https://nodei.co/npm/html-screen-capture-js.png?compact=true)](https://www.npmjs.com/package/html-screen-capture-js)
-
 <a name="technicalOverview"></a>
 ## Technical Overview
 
@@ -38,6 +36,8 @@ You can get this library from these sources:
 ```sh
 npm install html-screen-capture-js
 ```
+
+[![NPM](https://nodei.co/npm/html-screen-capture-js.png?compact=true)](https://www.npmjs.com/package/html-screen-capture-js)
 
 <a name="artifacts"></a>
 ## Artifacts
