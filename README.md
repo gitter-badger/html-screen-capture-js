@@ -1,5 +1,7 @@
 # html-screen-capture-js
 
+[![Join the chat at https://gitter.im/html-screen-capture-js/Lobby](https://badges.gitter.im/html-screen-capture-js/Lobby.svg)](https://gitter.im/html-screen-capture-js/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 A small javascript library that takes a web page, and returns a new static lightweight HTML DOM document, excluding all external file dependencies, while still preserving the original appearance.
 
 This library can be used to:
